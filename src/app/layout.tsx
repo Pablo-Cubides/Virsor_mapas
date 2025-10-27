@@ -95,7 +95,7 @@ export default function RootLayout({
     <html lang="es" className={inter.variable}>
       <body className="font-sans antialiased">
         {children}
-        <div className="fixed bottom-0 left-0 right-0 bg-warning-100 border-t border-warning-300 p-2 text-center text-sm text-warning-800 z-50">
+        <div className="fixed bottom-0 left-0 right-0 z-50 p-2 text-sm text-center text-black border-t bg-warning-100 border-warning-300 text-warning-800 texr">
           ⚠️ Los datos podrán ser borrados si el administrador lo considera
         </div>
       </body>
