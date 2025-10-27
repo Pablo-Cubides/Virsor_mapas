@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import UploadWizard from '@/components/UploadWizard'
 import type { DatasetMetadata, GeoJSONFeature, FilterState, User } from '@/types'
+import { logger } from '@/lib/logger'
 
 // Dynamically import MapComponent to avoid SSR issues
 const MapComponent = dynamic(
@@ -133,7 +134,10 @@ export default function HomePage() {
   }
 
   const handleUploadComplete = (data: any) => {
-    console.log('Upload completed:', data)
+    logger.info('Upload completed successfully', { 
+      datasetId: data?.datasetId,
+      recordCount: data?.recordCount 
+    })
     setShowUploadWizard(false)
     // TODO: Process uploaded data and refresh datasets
   }
@@ -214,9 +218,17 @@ export default function HomePage() {
 
   return (
     <>
-      <main className="h-screen flex flex-col">
+      {/* Skip Link for Accessibility */}
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-primary-600 focus:text-white focus:font-semibold"
+      >
+        Saltar al contenido principal
+      </a>
+
+      <main id="main-content" className="h-screen flex flex-col">
         {/* Header */}
-        <header className="bg-white shadow-sm border-b border-gray-200">
+        <header className="bg-white shadow-sm border-b border-gray-200" role="banner">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
               <div className="flex items-center space-x-4">
@@ -228,6 +240,8 @@ export default function HomePage() {
                     const dataset = datasets.find(d => d.id === e.target.value)
                     setSelectedDataset(dataset || null)
                   }}
+                  aria-label="Seleccionar dataset de datos ambientales"
+                  aria-describedby="dataset-description"
                 >
                   <option value="">Seleccionar dataset...</option>
                   {datasets.map(dataset => (
@@ -236,6 +250,9 @@ export default function HomePage() {
                     </option>
                   ))}
                 </select>
+                <span id="dataset-description" className="sr-only">
+                  Seleccione un conjunto de datos ambientales para visualizar en el mapa
+                </span>
               </div>
               <div className="flex items-center space-x-4">
                 <a
@@ -243,6 +260,7 @@ export default function HomePage() {
                   className="btn-secondary flex items-center"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Abrir guía de uso en nueva pestaña"
                 >
                   📖 Guía de uso
                 </a>
@@ -250,6 +268,7 @@ export default function HomePage() {
                   <button 
                     className="btn-primary"
                     onClick={() => setShowUploadWizard(true)}
+                    aria-label="Abrir asistente para subir nuevos datos ambientales"
                   >
                     + Subir datos
                   </button>
@@ -257,6 +276,7 @@ export default function HomePage() {
                 <button 
                   className="btn-secondary"
                   onClick={() => setUser(null)}
+                  aria-label="Cerrar sesión y volver al inicio"
                 >
                   Cerrar sesión
                 </button>

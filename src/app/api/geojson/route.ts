@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
+import { logger } from '@/lib/logger'
 
 export async function GET(request: Request) {
   try {
     if (!supabase) {
+      logger.warn('Supabase not configured', { endpoint: '/api/geojson' })
       return NextResponse.json({ 
         error: 'Supabase no configurado. Configure las variables de entorno.' 
       }, { status: 503 })
@@ -14,6 +16,10 @@ export async function GET(request: Request) {
     const date = url.searchParams.get('date')
 
     if (!datasetId || !date) {
+      logger.warn('Missing required parameters in /api/geojson', { 
+        hasDatasetId: !!datasetId, 
+        hasDate: !!date 
+      })
       return NextResponse.json({ 
         error: 'datasetId y date son requeridos' 
       }, { status: 400 })
@@ -27,16 +33,21 @@ export async function GET(request: Request) {
       .download(fileName)
 
     if (error) {
-      console.error('Error downloading GeoJSON:', error)
+      logger.error('Failed to download GeoJSON', error, { datasetId, date, fileName })
       return NextResponse.json({ error: 'Datos no encontrados' }, { status: 404 })
     }
 
     const text = await data.text()
     const geojson = JSON.parse(text)
 
+    logger.info('GeoJSON fetched successfully', { 
+      datasetId, 
+      date, 
+      featuresCount: geojson.features?.length || 0 
+    })
     return NextResponse.json(geojson)
   } catch (error) {
-    console.error('Unexpected error:', error)
+    logger.error('Unexpected error in GET /api/geojson', error)
     return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 })
   }
 }
@@ -44,6 +55,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     if (!supabase) {
+      logger.warn('Supabase not configured', { endpoint: '/api/geojson', method: 'POST' })
       return NextResponse.json({ 
         error: 'Supabase no configurado. Configure las variables de entorno.' 
       }, { status: 503 })
@@ -53,6 +65,11 @@ export async function POST(request: Request) {
     const { datasetId, date, geojson } = body
 
     if (!datasetId || !date || !geojson) {
+      logger.warn('Missing required fields in POST /api/geojson', { 
+        hasDatasetId: !!datasetId, 
+        hasDate: !!date, 
+        hasGeojson: !!geojson 
+      })
       return NextResponse.json({ 
         error: 'datasetId, date y geojson son requeridos' 
       }, { status: 400 })
@@ -70,13 +87,19 @@ export async function POST(request: Request) {
       })
 
     if (uploadError) {
-      console.error('Error uploading GeoJSON:', uploadError)
+      logger.error('Failed to upload GeoJSON', uploadError, { datasetId, date, fileName })
       return NextResponse.json({ error: 'Error al guardar los datos' }, { status: 500 })
     }
 
+    logger.info('GeoJSON uploaded successfully', { 
+      datasetId, 
+      date, 
+      fileName,
+      featuresCount: geojson.features?.length || 0 
+    })
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error('Unexpected error:', error)
+    logger.error('Unexpected error in POST /api/geojson', error)
     return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 })
   }
 }

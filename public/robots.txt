@@ -1,0 +1,25 @@
+# robots.txt para Mapa Ambiental
+# Configuración de rastreo para motores de búsqueda
+
+# Permitir todos los bots
+User-agent: *
+Allow: /
+
+# No indexar rutas de API
+Disallow: /api/
+
+# No indexar assets privados si los hay
+# Disallow: /private/
+
+# Sitemap
+Sitemap: https://tu-empresa.com/sitemap.xml
+
+# Bots específicos
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Frecuencia de rastreo (opcional)
+# Crawl-delay: 1

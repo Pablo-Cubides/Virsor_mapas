@@ -94,9 +94,9 @@ export default function GuiaUsoPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
+      <header className="bg-white border-b border-gray-200 shadow-sm">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between py-4">
             <div className="flex items-center space-x-4">
               <h1 className="text-xl font-semibold text-gray-900">Mapa Ambiental</h1>
               <span className="text-gray-400">|</span>
@@ -115,10 +115,10 @@ export default function GuiaUsoPage() {
       </header>
 
       {/* Content */}
-      <main className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <main className="max-w-4xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
         {/* Introduction */}
         <div className="mb-12">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+          <h1 className="mb-4 text-3xl font-bold text-gray-900">
             Guía completa de uso - Mapa Ambiental
           </h1>
           <p className="text-lg text-gray-600">
@@ -128,25 +128,25 @@ export default function GuiaUsoPage() {
 
         {/* Quick Start */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">🚀 Inicio rápido</h2>
-          <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h2 className="mb-6 text-2xl font-bold text-gray-900">🚀 Inicio rápido</h2>
+          <div className="p-6 mb-6 bg-white rounded-lg shadow-md">
             <ol className="space-y-4">
               <li className="flex items-start">
-                <span className="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-semibold text-sm mr-3">1</span>
+                <span className="flex items-center justify-center flex-shrink-0 w-8 h-8 mr-3 text-sm font-semibold text-white rounded-full bg-primary-600">1</span>
                 <div>
                   <p className="font-medium text-gray-900">Inicia sesión</p>
                   <p className="text-gray-600">Usa cualquier email y contraseña para acceder (modo desarrollo)</p>
                 </div>
               </li>
               <li className="flex items-start">
-                <span className="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-semibold text-sm mr-3">2</span>
+                <span className="flex items-center justify-center flex-shrink-0 w-8 h-8 mr-3 text-sm font-semibold text-white rounded-full bg-primary-600">2</span>
                 <div>
                   <p className="font-medium text-gray-900">Sube tus datos</p>
                   <p className="text-gray-600">Haz clic en &ldquo;+ Subir datos&rdquo; y sigue el asistente de 3 pasos</p>
                 </div>
               </li>
               <li className="flex items-start">
-                <span className="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-semibold text-sm mr-3">3</span>
+                <span className="flex items-center justify-center flex-shrink-0 w-8 h-8 mr-3 text-sm font-semibold text-white rounded-full bg-primary-600">3</span>
                 <div>
                   <p className="font-medium text-gray-900">Explora en el mapa</p>
                   <p className="text-gray-600">Selecciona dataset, fecha y usa filtros para visualizar tus datos</p>
@@ -158,55 +158,55 @@ export default function GuiaUsoPage() {
 
         {/* File Formats */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">📁 Formatos de archivo soportados</h2>
+          <h2 className="mb-6 text-2xl font-bold text-gray-900">📁 Formatos de archivo soportados</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 gap-6 mb-8 md:grid-cols-3">
             {/* GeoJSON */}
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="p-6 bg-white rounded-lg shadow-md">
               <div className="flex items-center mb-4">
-                <span className="text-2xl mr-3">🗺️</span>
+                <span className="mr-3 text-2xl">🗺️</span>
                 <h3 className="text-lg font-semibold">GeoJSON</h3>
               </div>
-              <p className="text-gray-600 mb-4">
+              <p className="mb-4 text-gray-600">
                 Formato estándar para datos geoespaciales. Perfecto si ya tienes coordenadas estructuradas.
               </p>
               <button
                 onClick={() => downloadFile(JSON.stringify(exampleGeoJSON, null, 2), 'ejemplo_datos_ambientales.geojson', 'application/json')}
-                className="btn-primary w-full text-sm"
+                className="w-full text-sm btn-primary"
               >
                 📥 Descargar ejemplo
               </button>
             </div>
 
             {/* CSV */}
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="p-6 bg-white rounded-lg shadow-md">
               <div className="flex items-center mb-4">
-                <span className="text-2xl mr-3">📊</span>
+                <span className="mr-3 text-2xl">📊</span>
                 <h3 className="text-lg font-semibold">CSV</h3>
               </div>
-              <p className="text-gray-600 mb-4">
+              <p className="mb-4 text-gray-600">
                 Archivo de texto separado por comas. El más común y fácil de crear desde Excel o Google Sheets.
               </p>
               <button
                 onClick={() => downloadFile(exampleCSV, 'ejemplo_datos_ambientales.csv', 'text/csv')}
-                className="btn-primary w-full text-sm"
+                className="w-full text-sm btn-primary"
               >
                 📥 Descargar ejemplo
               </button>
             </div>
 
             {/* Excel */}
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="p-6 bg-white rounded-lg shadow-md">
               <div className="flex items-center mb-4">
-                <span className="text-2xl mr-3">📋</span>
+                <span className="mr-3 text-2xl">📋</span>
                 <h3 className="text-lg font-semibold">Excel (.xlsx)</h3>
               </div>
-              <p className="text-gray-600 mb-4">
+              <p className="mb-4 text-gray-600">
                 Archivo de Microsoft Excel. Útil si trabajas con hojas de cálculo complejas.
               </p>
               <button
                 onClick={() => alert('Para Excel, descarga el CSV y ábrelo en Excel, luego guárdalo como .xlsx')}
-                className="btn-secondary w-full text-sm"
+                className="w-full text-sm btn-secondary"
               >
                 💡 Ver instrucciones
               </button>
@@ -216,45 +216,45 @@ export default function GuiaUsoPage() {
 
         {/* Required Fields */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">📋 Campos obligatorios</h2>
+          <h2 className="mb-6 text-2xl font-bold text-gray-900">📋 Campos obligatorios</h2>
           
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="p-6 bg-white rounded-lg shadow-md">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Campos requeridos</h3>
+                <h3 className="mb-4 text-lg font-semibold text-gray-900">Campos requeridos</h3>
                 <ul className="space-y-3">
                   <li className="flex items-center">
-                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 mr-3 bg-red-500 rounded-full"></span>
                     <div>
                       <strong>lat/latitud:</strong> Coordenada de latitud (ej: 4.7110)
                     </div>
                   </li>
                   <li className="flex items-center">
-                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 mr-3 bg-red-500 rounded-full"></span>
                     <div>
                       <strong>lon/longitud:</strong> Coordenada de longitud (ej: -74.0721)
                     </div>
                   </li>
                   <li className="flex items-center">
-                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 mr-3 bg-red-500 rounded-full"></span>
                     <div>
                       <strong>fecha:</strong> Fecha en formato YYYY-MM-DD (ej: 2024-01-15)
                     </div>
                   </li>
                   <li className="flex items-center">
-                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 mr-3 bg-red-500 rounded-full"></span>
                     <div>
                       <strong>pais:</strong> Nombre del país (ej: Colombia)
                     </div>
                   </li>
                   <li className="flex items-center">
-                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 mr-3 bg-red-500 rounded-full"></span>
                     <div>
                       <strong>departamento:</strong> Departamento/Estado (ej: Cundinamarca)
                     </div>
                   </li>
                   <li className="flex items-center">
-                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 mr-3 bg-red-500 rounded-full"></span>
                     <div>
                       <strong>ciudad:</strong> Ciudad/Municipio (ej: Bogotá)
                     </div>
@@ -263,46 +263,46 @@ export default function GuiaUsoPage() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Parámetros opcionales</h3>
+                <h3 className="mb-4 text-lg font-semibold text-gray-900">Parámetros opcionales</h3>
                 <ul className="space-y-3">
                   <li className="flex items-center">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 mr-3 bg-green-500 rounded-full"></span>
                     <div>
                       <strong>DBO:</strong> Demanda Bioquímica de Oxígeno (mg/L)
                     </div>
                   </li>
                   <li className="flex items-center">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 mr-3 bg-green-500 rounded-full"></span>
                     <div>
                       <strong>DQO:</strong> Demanda Química de Oxígeno (mg/L)
                     </div>
                   </li>
                   <li className="flex items-center">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 mr-3 bg-green-500 rounded-full"></span>
                     <div>
                       <strong>pH:</strong> Potencial de hidrógeno (unidades)
                     </div>
                   </li>
                   <li className="flex items-center">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 mr-3 bg-green-500 rounded-full"></span>
                     <div>
                       <strong>conductividad:</strong> Conductividad eléctrica (μS/cm)
                     </div>
                   </li>
                   <li className="flex items-center">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 mr-3 bg-green-500 rounded-full"></span>
                     <div>
                       <strong>solidos_totales:</strong> Sólidos totales (mg/L)
                     </div>
                   </li>
                   <li className="flex items-center">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 mr-3 bg-green-500 rounded-full"></span>
                     <div>
                       <strong>alcalinidad:</strong> Alcalinidad total (mg/L)
                     </div>
                   </li>
                   <li className="flex items-center">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 mr-3 bg-green-500 rounded-full"></span>
                     <div>
                       <strong>dureza:</strong> Dureza del agua (mg/L)
                     </div>
@@ -315,16 +315,16 @@ export default function GuiaUsoPage() {
 
         {/* Upload Wizard */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">🔧 Asistente de carga (paso a paso)</h2>
+          <h2 className="mb-6 text-2xl font-bold text-gray-900">🔧 Asistente de carga (paso a paso)</h2>
           
           <div className="space-y-6">
             {/* Step 1 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="p-6 bg-white rounded-lg shadow-md">
               <div className="flex items-center mb-4">
-                <span className="w-10 h-10 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold mr-4">1</span>
+                <span className="flex items-center justify-center w-10 h-10 mr-4 font-bold text-white rounded-full bg-primary-600">1</span>
                 <h3 className="text-xl font-semibold">Selección de archivo</h3>
               </div>
-              <ul className="ml-14 space-y-2 text-gray-600">
+              <ul className="space-y-2 text-gray-600 ml-14">
                 <li>• Haz clic en &ldquo;Subir datos&rdquo; en la barra superior</li>
                 <li>• Arrastra tu archivo o haz clic para seleccionarlo</li>
                 <li>• Formatos aceptados: .geojson, .csv, .xlsx</li>
@@ -334,12 +334,12 @@ export default function GuiaUsoPage() {
             </div>
 
             {/* Step 2 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="p-6 bg-white rounded-lg shadow-md">
               <div className="flex items-center mb-4">
-                <span className="w-10 h-10 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold mr-4">2</span>
+                <span className="flex items-center justify-center w-10 h-10 mr-4 font-bold text-white rounded-full bg-primary-600">2</span>
                 <h3 className="text-xl font-semibold">Mapeo de columnas</h3>
               </div>
-              <ul className="ml-14 space-y-2 text-gray-600">
+              <ul className="space-y-2 text-gray-600 ml-14">
                 <li>• <strong>Solo para CSV/Excel:</strong> Los archivos GeoJSON saltan este paso</li>
                 <li>• Mapea cada campo obligatorio a una columna de tu archivo</li>
                 <li>• Selecciona parámetros opcionales que quieras incluir</li>
@@ -349,12 +349,12 @@ export default function GuiaUsoPage() {
             </div>
 
             {/* Step 3 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="p-6 bg-white rounded-lg shadow-md">
               <div className="flex items-center mb-4">
-                <span className="w-10 h-10 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold mr-4">3</span>
+                <span className="flex items-center justify-center w-10 h-10 mr-4 font-bold text-white rounded-full bg-primary-600">3</span>
                 <h3 className="text-xl font-semibold">Configuración del dataset</h3>
               </div>
-              <ul className="ml-14 space-y-2 text-gray-600">
+              <ul className="space-y-2 text-gray-600 ml-14">
                 <li>• Asigna un nombre descriptivo a tu dataset</li>
                 <li>• Añade una descripción opcional</li>
                 <li>• Configura límite de puntos por día (opcional)</li>
@@ -367,33 +367,33 @@ export default function GuiaUsoPage() {
 
         {/* Map Features */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">🗺️ Funciones del mapa</h2>
+          <h2 className="mb-6 text-2xl font-bold text-gray-900">🗺️ Funciones del mapa</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Clustering inteligente</h3>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="p-6 bg-white rounded-lg shadow-md">
+              <h3 className="mb-4 text-lg font-semibold text-gray-900">Clustering inteligente</h3>
               <div className="space-y-3">
                 <div className="flex items-center">
-                  <div className="w-6 h-6 bg-green-500 rounded-full mr-3 flex-shrink-0"></div>
+                  <div className="flex-shrink-0 w-6 h-6 mr-3 bg-green-500 rounded-full"></div>
                   <span className="text-sm">Verde: 1-10 puntos</span>
                 </div>
                 <div className="flex items-center">
-                  <div className="w-6 h-6 bg-blue-500 rounded-full mr-3 flex-shrink-0"></div>
+                  <div className="flex-shrink-0 w-6 h-6 mr-3 bg-blue-500 rounded-full"></div>
                   <span className="text-sm">Azul: 10-50 puntos</span>
                 </div>
                 <div className="flex items-center">
-                  <div className="w-6 h-6 bg-orange-500 rounded-full mr-3 flex-shrink-0"></div>
+                  <div className="flex-shrink-0 w-6 h-6 mr-3 bg-orange-500 rounded-full"></div>
                   <span className="text-sm">Naranja: 50-100 puntos</span>
                 </div>
                 <div className="flex items-center">
-                  <div className="w-6 h-6 bg-red-500 rounded-full mr-3 flex-shrink-0"></div>
+                  <div className="flex-shrink-0 w-6 h-6 mr-3 bg-red-500 rounded-full"></div>
                   <span className="text-sm">Rojo: 100+ puntos</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Interacciones</h3>
+            <div className="p-6 bg-white rounded-lg shadow-md">
+              <h3 className="mb-4 text-lg font-semibold text-gray-900">Interacciones</h3>
               <ul className="space-y-2 text-gray-600">
                 <li>• <strong>Clic en cluster:</strong> Hacer zoom para expandir</li>
                 <li>• <strong>Clic en punto:</strong> Ver detalles en panel derecho</li>
@@ -407,12 +407,12 @@ export default function GuiaUsoPage() {
 
         {/* Filters */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">🎛️ Sistema de filtros</h2>
+          <h2 className="mb-6 text-2xl font-bold text-gray-900">🎛️ Sistema de filtros</h2>
           
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="p-6 bg-white rounded-lg shadow-md">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Filtros geográficos</h3>
+                <h3 className="mb-4 text-lg font-semibold text-gray-900">Filtros geográficos</h3>
                 <ul className="space-y-3 text-gray-600">
                   <li>• <strong>País:</strong> Filtra por país específico</li>
                   <li>• <strong>Departamento:</strong> Se actualiza según país seleccionado</li>
@@ -421,7 +421,7 @@ export default function GuiaUsoPage() {
                 </ul>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Filtros por parámetros</h3>
+                <h3 className="mb-4 text-lg font-semibold text-gray-900">Filtros por parámetros</h3>
                 <ul className="space-y-3 text-gray-600">
                   <li>• Selecciona qué parámetros mostrar</li>
                   <li>• Solo aparecen los disponibles en el dataset</li>
@@ -435,11 +435,11 @@ export default function GuiaUsoPage() {
 
         {/* Tips */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">💡 Consejos y mejores prácticas</h2>
+          <h2 className="mb-6 text-2xl font-bold text-gray-900">💡 Consejos y mejores prácticas</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-green-900 mb-3">✅ Hacer</h3>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="p-6 border border-green-200 rounded-lg bg-green-50">
+              <h3 className="mb-3 text-lg font-semibold text-green-900">✅ Hacer</h3>
               <ul className="space-y-2 text-green-800">
                 <li>• Usar fechas en formato ISO (YYYY-MM-DD)</li>
                 <li>• Incluir coordenadas precisas (6+ decimales)</li>
@@ -449,8 +449,8 @@ export default function GuiaUsoPage() {
               </ul>
             </div>
             
-            <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-red-900 mb-3">❌ Evitar</h3>
+            <div className="p-6 border border-red-200 rounded-lg bg-red-50">
+              <h3 className="mb-3 text-lg font-semibold text-red-900">❌ Evitar</h3>
               <ul className="space-y-2 text-red-800">
                 <li>• Mezclar diferentes formatos de fecha</li>
                 <li>• Usar coordenadas con pocos decimales</li>
@@ -464,7 +464,7 @@ export default function GuiaUsoPage() {
 
         {/* FAQ */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">❓ Preguntas frecuentes</h2>
+          <h2 className="mb-6 text-2xl font-bold text-gray-900">❓ Preguntas frecuentes</h2>
           
           <div className="space-y-4">
             <div className="bg-white rounded-lg shadow-md">
@@ -518,18 +518,18 @@ export default function GuiaUsoPage() {
 
         {/* Contact */}
         <section className="mb-12">
-          <div className="bg-primary-50 border border-primary-200 rounded-lg p-6">
-            <h2 className="text-xl font-semibold text-primary-900 mb-4">
+          <div className="p-6 border rounded-lg bg-primary-50 border-primary-200">
+            <h2 className="mb-4 text-xl font-semibold text-primary-900">
               📞 ¿Necesitas ayuda adicional?
             </h2>
-            <p className="text-primary-800 mb-4">
+            <p className="mb-4 text-primary-800">
               Si tienes problemas técnicos o necesitas asistencia personalizada, contáctanos:
             </p>
             <div className="flex flex-wrap gap-4">
-              <span className="bg-white px-4 py-2 rounded-md text-primary-800 font-medium">
+              <span className="px-4 py-2 font-medium bg-white rounded-md text-primary-800">
                 📧 soporte@mapa-ambiental.com
               </span>
-              <span className="bg-white px-4 py-2 rounded-md text-primary-800 font-medium">
+              <span className="px-4 py-2 font-medium bg-white rounded-md text-primary-800">
                 💬 Chat en vivo disponible
               </span>
             </div>
@@ -538,7 +538,7 @@ export default function GuiaUsoPage() {
       </main>
 
       {/* Fixed warning banner */}
-      <div className="fixed bottom-0 left-0 right-0 bg-warning-100 border-t border-warning-300 p-2 text-center text-sm text-warning-800 z-50">
+      <div className="fixed bottom-0 left-0 right-0 z-50 p-2 text-sm text-center border-t bg-warning-100 border-warning-300 text-warning-800">
         ⚠️ Los datos podrán ser borrados si el administrador lo considera
       </div>
     </div>

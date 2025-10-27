@@ -1,10 +1,14 @@
 import { createClient } from '@supabase/supabase-js'
+import { logger } from './logger'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('Missing Supabase environment variables. Some features will not work.')
+  logger.warn('Missing Supabase environment variables. Features requiring database will not work.', {
+    hasUrl: !!supabaseUrl,
+    hasKey: !!supabaseAnonKey
+  })
 }
 
 // Create a mock client if env vars are missing (for development)
